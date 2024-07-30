@@ -15,15 +15,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  String getTimeOfDay(int timezoneOffset) {
-    // Get the current UTC time
-    DateTime now = DateTime.now().toUtc();
-
-    // Apply the timezone offset
-    DateTime localTime = now.add(Duration(seconds: timezoneOffset));
-
-    // Determine the time of day
-    int hour = localTime.hour;
+  String getTimeOfDay(DateTime dateTime) {
+    int hour = dateTime.hour;
     if (hour >= 6 && hour < 12) {
       return "Morning";
     } else if (hour >= 12 && hour < 18) {
@@ -132,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.w300),
                           ),
                           const SizedBox(height: 8),
-                           Text(getTimeOfDay(18000),
+                           Text("Good ${getTimeOfDay(state.weather.date!)}",
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 25,
